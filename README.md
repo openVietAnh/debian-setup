@@ -24,7 +24,7 @@ sudo apt upgrade
 
 ## Necessary packages
 ```bash
-sudo apt install curl git
+sudo apt install curl git build-essential
 ```
 
 ## Git setup
@@ -46,3 +46,33 @@ sudo apt update
 sudo apt install zig ghostty lazygit yazi eza uv fzf zoxide bun tigerbeetle
 ```
 
+## Install the Source Code Pro fonts
+```bash
+mkdir -p ~/.fonts/adobe-fonts/source-code-pro
+git clone https://github.com/adobe-fonts/source-code-pro.git ~/.fonts/adobe-fonts/source-code-pro
+fc-cache -f -v ~/.fonts/adobe-fonts/source-code-pro
+```
+
+## Install oh-my-zsh
+```
+sudo apt install zsh zplug
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+## Install the Rust programming language
+```
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+. "$HOME/.cargo/env"
+```
+
+## Install Node.js with nvm
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm ls-remote
+nvm install v24 # replace with the latest LTS version
+nvm use v2
+npm install -g corepack
+```
