@@ -54,19 +54,19 @@ fc-cache -f -v ~/.fonts/adobe-fonts/source-code-pro
 ```
 
 ## Install oh-my-zsh
-```
+```bash
 sudo apt install zsh zplug
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+sh -c "$(curl ****-fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
 ## Install the Rust programming language
-```
+```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 . "$HOME/.cargo/env"
 ```
 
 ## Install Node.js with nvm
-```
+```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -75,4 +75,39 @@ nvm ls-remote
 nvm install v24 # replace with the latest LTS version
 nvm use v2
 npm install -g corepack
+```
+
+## Install NVIDIA driver (for machines with NVIDIA GPU)
+```bash
+lspci -nn | egrep -i "3d|display|vga"
+sudo apt install linux-headers-amd64
+sudo nano /etc/apt/sources.list
+```
+Edit the file
+```
+deb http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm main contrib non-free non-free-firmware
+
+deb http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+deb-src http://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+
+deb http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+deb-src http://deb.debian.org/debian/ bookworm-updates main contrib non-free non-free-firmware
+```
+```bash
+sudo apt update
+sudo apt install nvidia-driver firmware-misc-nonfree
+reboot
+```
+
+## VPN setup and enable VPN in GNOME Setting
+```bash
+sudo apt-get install openvpn network-manager-openvpn-gnome
+```
+
+## Install ibus-bamboo
+Download link: [Build Service](https://download.opensuse.org/repositories/home:/lamlng/Debian_12/amd64/ibus-bamboo_0.8.4-0_amd64.deb)
+```bash
+ibus restart
+env DCONF_PROFILE=ibus dconf write /desktop/ibus/general/preload-engines "['BambooUs', 'Bamboo']" && gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo')]"
 ```
