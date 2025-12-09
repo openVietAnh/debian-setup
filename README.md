@@ -156,3 +156,9 @@ curl --proto '=https' --tlsv1.2 -LsSf https://install.aiken-lang.org | sh
 source $HOME/.aiken/bin/env
 aikup
 ```
+
+### Fix display settings reverted after reboot
+```bash
+sudo cp ~/.config/monitors.xml /var/lib/gdm3/.config/
+sudo chown Debian-gdm:Debian-gdm /var/lib/gdm3/.config/monitors.xml
+```
